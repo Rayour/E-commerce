@@ -14,5 +14,5 @@ def test_category_init(first_category: Category, second_category: Category, thir
     assert third_category.description == "Всё для отдыха"
     assert len(third_category.products) == 0
 
-    assert first_category.categories_count == 3
-    assert first_category.products_count == 4
+    assert first_category.category_count == 3
+    assert second_category.product_count == 4

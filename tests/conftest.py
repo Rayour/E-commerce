@@ -1,3 +1,5 @@
+from typing import Any
+
 import pytest
 
 from src.category import Category
@@ -39,3 +41,67 @@ def third_category() -> Category:
 @pytest.fixture
 def product() -> Product:
     return Product("Шоколадка", "Вкусно и калорийно", 200.0, 55)
+
+
+@pytest.fixture
+def data_to_create_categories_with_products(request: Any) -> Any:
+    """Фикстура для тестирования функции src.utils.create_categories"""
+
+    tests = [
+        {
+            "input": [
+                {
+                    "name": "Смартфоны",
+                    "description": "Смартфоны, как средство коммуникации",
+                    "products": [
+                        {
+                            "name": "Samsung Galaxy C23 Ultra",
+                            "description": "256GB, Серый цвет, 200MP камера",
+                            "price": 180000.0,
+                            "quantity": 5
+                        },
+                        {
+                            "name": "Iphone 15",
+                            "description": "512GB, Gray space",
+                            "price": 210000.0,
+                            "quantity": 8
+                        },
+                        {
+                            "name": "Xiaomi Redmi Note 11",
+                            "description": "1024GB, Синий",
+                            "price": 31000.0,
+                            "quantity": 14
+                        }
+                    ]
+                }
+            ],
+            "output": {
+                "name": "Смартфоны",
+                "description": "Смартфоны, как средство коммуникации",
+                "product_len": 3,
+                "product_0_name": "Samsung Galaxy C23 Ultra",
+                "product_1_description": "512GB, Gray space",
+                "product_2_price": 31000.0,
+                "product_2_quantity": 14
+            }
+        },
+        {
+            "input": [
+                {
+                    "name": "Смартфоны",
+                    "description": "Смартфоны, как средство коммуникации",
+                    "products": []
+                }
+            ],
+            "output": {
+                "name": "Смартфоны",
+                "description": "Смартфоны, как средство коммуникации",
+                "product_len": 0,
+                "product_0_name": "",
+                "product_1_description": "",
+                "product_2_price": 0,
+                "product_2_quantity": 0
+            }
+        }
+    ]
+    return tests[request.param]
