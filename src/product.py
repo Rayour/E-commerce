@@ -1,5 +1,3 @@
-
-
 class Product:
     """Класс для описания продукта"""
 
@@ -8,8 +6,7 @@ class Product:
     price: float
     quantity: int
 
-
-    def __init__(self, name, description, price, quantity):
+    def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
         """Функция для создания объекта продукта
         с указанием названия, описания, цены и количества в наличии"""
 
