@@ -83,11 +83,7 @@ def data_to_create_categories_with_products(request: Any) -> Any:
             "output": {
                 "name": "Смартфоны",
                 "description": "Смартфоны, как средство коммуникации",
-                "product_len": 3,
-                "product_0_name": "Samsung Galaxy C23 Ultra",
-                "product_1_description": "512GB, Gray space",
-                "product_2_price": 31000.0,
-                "product_2_quantity": 14
+                "product_count": 3,
             }
         },
         {
@@ -101,11 +97,7 @@ def data_to_create_categories_with_products(request: Any) -> Any:
             "output": {
                 "name": "Смартфоны",
                 "description": "Смартфоны, как средство коммуникации",
-                "product_len": 0,
-                "product_0_name": "",
-                "product_1_description": "",
-                "product_2_price": 0,
-                "product_2_quantity": 0
+                "product_count": 0,
             }
         }
     ]
