@@ -44,6 +44,11 @@ def product() -> Product:
 
 
 @pytest.fixture
+def second_product() -> Product:
+    return Product("Палатка", "Уютно и комфортно", 17000.0, 8)
+
+
+@pytest.fixture
 def data_to_create_categories_with_products(request: Any) -> Any:
     """Фикстура для тестирования функции src.utils.create_categories"""
 

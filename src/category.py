@@ -1,9 +1,12 @@
+from src.product import Product
+
+
 class Category:
     """Класс для описания категории продуктов"""
 
     name: str
     description: str
-    products: list
+    __products: list
 
     category_count = 0
     product_count = 0
@@ -14,6 +17,16 @@ class Category:
 
         self.name = name
         self.description = description
-        self.products = products if products else []
+        self.__products = products if products else []
         Category.category_count += 1
         Category.product_count += len(products) if products else 0
+
+    @property
+    def products(self) -> list:
+        return self.__products
+
+    def add_product(self, product: Product) -> None:
+        """Добавляет продукт в категорию"""
+
+        self.__products.append(product)
+        Category.product_count += 1
