@@ -83,7 +83,6 @@ def data_to_create_categories_with_products(request: Any) -> Any:
             "output": {
                 "name": "Смартфоны",
                 "description": "Смартфоны, как средство коммуникации",
-                "product_count": 3,
             }
         },
         {
@@ -97,7 +96,6 @@ def data_to_create_categories_with_products(request: Any) -> Any:
             "output": {
                 "name": "Смартфоны",
                 "description": "Смартфоны, как средство коммуникации",
-                "product_count": 0,
             }
         }
     ]
