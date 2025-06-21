@@ -30,10 +30,10 @@ class Product:
     def __add__(self, other: Any) -> float:
         """Метод сложения продуктов. Возвращает суммарную стоимость всех единиц товаров в складываемых продуктах"""
 
-        if isinstance(other, Product):
+        if isinstance(other, self.__class__):
             return self.quantity * self.__price + other.quantity * other.__price
         else:
-            raise TypeError("Сложить можно только два объекта класса Product")
+            raise TypeError("Сложить можно только два объекта одного класса")
 
     @classmethod
     def new_product(cls, name: str, description: str, price: float, quantity: int) -> Any:
