@@ -23,7 +23,17 @@ class Product:
         Product.products_lane[name] = self
 
     def __str__(self) -> str:
+        """Метод строкового представления объекта продукта"""
+
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other: Any) -> float:
+        """Метод сложения продуктов. Возвращает суммарную стоимость всех единиц товаров в складываемых продуктах"""
+
+        if isinstance(other, Product):
+            return self.quantity * self.__price + other.quantity * other.__price
+        else:
+            raise TypeError("Сложить можно только два объекта класса Product")
 
     @classmethod
     def new_product(cls, name: str, description: str, price: float, quantity: int) -> Any:

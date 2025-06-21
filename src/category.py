@@ -22,6 +22,9 @@ class Category:
         Category.product_count += len(products) if products else 0
 
     def __str__(self) -> str:
+        """Метод строкового представления объекта категории.
+        В качестве количества продуктов возвращается суммарное количество всех продуктов данной категории"""
+
         products_count = 0
         for product in self.__products:
             products_count += product.quantity

@@ -1,5 +1,7 @@
 from typing import Any
 
+import pytest
+
 from src.product import Product
 
 
@@ -30,3 +32,9 @@ def test_price_change(capsys: Any, product: Product) -> None:
     assert product.price == 500.0
     product.price = -200.0
     assert capsys.readouterr().out == "Цена не должна быть нулевая или отрицательная\n"
+
+
+def test_product_add(product: Product, second_product: Product) -> None:
+    assert product + second_product == 147000.0
+    with pytest.raises(TypeError):
+        product + 3
