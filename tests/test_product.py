@@ -21,6 +21,10 @@ def test_create_new_product() -> None:
     assert p1 == p2
 
 
+def test_product_str(product: Product) -> None:
+    assert str(product) == "Шоколадка, 200.0 руб. Остаток: 55 шт."
+
+
 def test_price_change(capsys: Any, product: Product) -> None:
     product.price = 500.0
     assert product.price == 500.0

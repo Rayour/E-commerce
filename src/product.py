@@ -22,6 +22,9 @@ class Product:
 
         Product.products_lane[name] = self
 
+    def __str__(self) -> str:
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
     @classmethod
     def new_product(cls, name: str, description: str, price: float, quantity: int) -> Any:
         """Класс-метод для создания нового продукта с проверкой существования аналогичного продукта"""
