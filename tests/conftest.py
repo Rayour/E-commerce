@@ -3,7 +3,9 @@ from typing import Any
 import pytest
 
 from src.category import Category
+from src.lawn_grass import LawnGrass
 from src.product import Product
+from src.smartphone import Smartphone
 
 
 @pytest.fixture
@@ -100,3 +102,13 @@ def data_to_create_categories_with_products(request: Any) -> Any:
         }
     ]
     return tests[request.param]
+
+
+@pytest.fixture
+def smartphone() -> Smartphone:
+    return Smartphone("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14, 90.3, "Note 11", 1024, "Синий")
+
+
+@pytest.fixture
+def lawn_grass() -> LawnGrass:
+    return LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый")
