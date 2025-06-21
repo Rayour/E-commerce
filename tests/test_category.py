@@ -22,3 +22,7 @@ def test_category_init(first_category: Category, second_category: Category, thir
 
     third_category.add_product(second_product)
     assert third_category.product_count == 5
+
+
+def test_category_str(first_category: Category) -> None:
+    assert str(first_category) == "Техника, количество продуктов: 12 шт."

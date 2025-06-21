@@ -6,7 +6,7 @@ class Category:
 
     name: str
     description: str
-    __products: list
+    _products: list
 
     category_count = 0
     product_count = 0
@@ -17,19 +17,28 @@ class Category:
 
         self.name = name
         self.description = description
-        self.__products = products if products else []
+        self._products = products if products else []
         Category.category_count += 1
         Category.product_count += len(products) if products else 0
+
+    def __str__(self) -> str:
+        """Метод строкового представления объекта категории.
+        В качестве количества продуктов возвращается суммарное количество всех продуктов данной категории"""
+
+        products_count = 0
+        for product in self._products:
+            products_count += product.quantity
+        return f"{self.name}, количество продуктов: {products_count} шт."
 
     @property
     def products(self) -> str:
         products_list = ""
-        for product in self.__products:
-            products_list += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+        for product in self._products:
+            products_list += f"{str(product)}\n"
         return products_list
 
     def add_product(self, product: Product) -> None:
         """Добавляет продукт в категорию"""
 
-        self.__products.append(product)
+        self._products.append(product)
         Category.product_count += 1
