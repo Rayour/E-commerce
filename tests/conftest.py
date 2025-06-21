@@ -44,6 +44,11 @@ def product() -> Product:
 
 
 @pytest.fixture
+def second_product() -> Product:
+    return Product("Палатка", "Уютно и комфортно", 17000.0, 8)
+
+
+@pytest.fixture
 def data_to_create_categories_with_products(request: Any) -> Any:
     """Фикстура для тестирования функции src.utils.create_categories"""
 
@@ -78,11 +83,6 @@ def data_to_create_categories_with_products(request: Any) -> Any:
             "output": {
                 "name": "Смартфоны",
                 "description": "Смартфоны, как средство коммуникации",
-                "product_len": 3,
-                "product_0_name": "Samsung Galaxy C23 Ultra",
-                "product_1_description": "512GB, Gray space",
-                "product_2_price": 31000.0,
-                "product_2_quantity": 14
             }
         },
         {
@@ -96,11 +96,6 @@ def data_to_create_categories_with_products(request: Any) -> Any:
             "output": {
                 "name": "Смартфоны",
                 "description": "Смартфоны, как средство коммуникации",
-                "product_len": 0,
-                "product_0_name": "",
-                "product_1_description": "",
-                "product_2_price": 0,
-                "product_2_quantity": 0
             }
         }
     ]
