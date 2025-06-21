@@ -1,5 +1,9 @@
+import pytest
+
 from src.category import Category
+from src.lawn_grass import LawnGrass
 from src.product import Product
+from src.smartphone import Smartphone
 
 
 def test_category_init(first_category: Category, second_category: Category, third_category: Category,
@@ -26,3 +30,17 @@ def test_category_init(first_category: Category, second_category: Category, thir
 
 def test_category_str(first_category: Category) -> None:
     assert str(first_category) == "Техника, количество продуктов: 12 шт."
+
+
+def test_add_product(
+        first_category: Category, product: Product, smartphone: Smartphone, lawn_grass: LawnGrass) -> None:
+    assert len(first_category._products) == 2
+    first_category.add_product(product)
+    assert len(first_category._products) == 3
+    first_category.add_product(smartphone)
+    assert len(first_category._products) == 4
+    first_category.add_product(lawn_grass)
+    assert len(first_category._products) == 5
+
+    with pytest.raises(TypeError):
+        first_category.add_product(3)
