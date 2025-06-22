@@ -2,7 +2,9 @@ from typing import Any
 
 import pytest
 
+from src.lawn_grass import LawnGrass
 from src.product import Product
+from src.smartphone import Smartphone
 
 
 def test_product_init(product: Product) -> None:
@@ -34,7 +36,13 @@ def test_price_change(capsys: Any, product: Product) -> None:
     assert capsys.readouterr().out == "Цена не должна быть нулевая или отрицательная\n"
 
 
-def test_product_add(product: Product, second_product: Product) -> None:
+def test_product_add(product: Product, second_product: Product, smartphone: Smartphone, smartphone2: Smartphone,
+                     lawn_grass: LawnGrass, lawn_grass2: LawnGrass) -> None:
     assert product + second_product == 147000.0
+    assert smartphone + smartphone2 == 2114000.0
+    assert lawn_grass + lawn_grass2 == 16750.0
+    assert product + smartphone == 445000.0
     with pytest.raises(TypeError):
         product + 3
+    with pytest.raises(TypeError):
+        smartphone + lawn_grass
