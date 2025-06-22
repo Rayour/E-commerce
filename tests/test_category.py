@@ -43,4 +43,4 @@ def test_add_product(
     assert len(first_category._products) == 5
 
     with pytest.raises(TypeError):
-        first_category.add_product(3)
+        first_category.add_product(3) # type: ignore[arg-type]
