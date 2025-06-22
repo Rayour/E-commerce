@@ -1,7 +1,10 @@
 from typing import Any
 
+from src.base_product import BaseProduct
+from src.print_mixin import PrintMixin
 
-class Product:
+
+class Product(BaseProduct, PrintMixin):
     """Класс для описания продукта"""
 
     name: str
@@ -19,8 +22,12 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
         Product.products_lane[name] = self
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}('{self.name}', '{self.description}', {self.price}, {self.quantity})"
 
     def __str__(self) -> str:
         """Метод строкового представления объекта продукта"""
@@ -36,15 +43,15 @@ class Product:
             raise TypeError("Сложить можно только два объекта одного класса")
 
     @classmethod
-    def new_product(cls, name: str, description: str, price: float, quantity: int) -> Any:
+    def new_product(cls, *args: Any, **kwargs: Any) -> Any:
         """Класс-метод для создания нового продукта с проверкой существования аналогичного продукта"""
 
-        if name in Product.products_lane:
-            Product.products_lane[name].__price = max(Product.products_lane[name].__price, price)
-            Product.products_lane[name].quantity += quantity
-            return Product.products_lane[name]
+        if args[0] in cls.products_lane:
+            cls.products_lane[args[0]].__price = max(cls.products_lane[args[0]].__price, args[2])
+            cls.products_lane[args[0]].quantity += args[3]
+            return cls.products_lane[args[0]]
         else:
-            return cls(name, description, price, quantity)
+            return cls(*args)
 
     @property
     def price(self) -> float:
