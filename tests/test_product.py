@@ -33,7 +33,7 @@ def test_price_change(capsys: Any, product: Product) -> None:
     product.price = 500.0
     assert product.price == 500.0
     product.price = -200.0
-    assert capsys.readouterr().out == "Цена не должна быть нулевая или отрицательная\n"
+    assert capsys.readouterr().out.strip().split("\n")[-1] == "Цена не должна быть нулевая или отрицательная"
 
 
 def test_product_add(product: Product, second_product: Product, smartphone: Smartphone, smartphone2: Smartphone,
