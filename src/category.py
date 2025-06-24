@@ -1,3 +1,5 @@
+from typing import Any
+
 from src.product import Product
 
 
@@ -47,3 +49,11 @@ class Category:
             raise TypeError(
                 "В список товаров категории можно добавить только объект класса Product или его наследников"
             )
+
+    def middle_price(self) -> Any:
+        """Метод для подсчета средней цены товара в категории"""
+
+        try:
+            return round(sum([item.price for item in self._products]) / len(self._products), 2)
+        except ZeroDivisionError:
+            return 0.0

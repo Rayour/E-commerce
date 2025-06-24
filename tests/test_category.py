@@ -44,3 +44,8 @@ def test_add_product(
 
     with pytest.raises(TypeError):
         first_category.add_product(3)  # type: ignore[arg-type]
+
+
+def test_middle_price(first_category: Category, third_category: Category) -> None:
+    assert first_category.middle_price() == 46500.0
+    assert third_category.middle_price() == 0.0
