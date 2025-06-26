@@ -14,6 +14,11 @@ def test_product_init(product: Product) -> None:
     assert product.quantity == 55
 
 
+def test_product_init_raise() -> None:
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+        Product("Name", "Description", 100.0, 0)
+
+
 def test_create_new_product() -> None:
     p1 = Product.new_product("Булочка", "Вкусно и калорийно", 200.0, 55)
     assert p1.name == "Булочка"

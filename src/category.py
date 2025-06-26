@@ -1,3 +1,6 @@
+from typing import Any
+
+from src.exceptions import ZeroQuantityException
 from src.product import Product
 
 
@@ -40,10 +43,29 @@ class Category:
     def add_product(self, product: Product) -> None:
         """Добавляет продукт в категорию"""
 
-        if isinstance(product, Product):
+        try:
+            if isinstance(product, Product):
+                if product.quantity <= 0:
+                    raise ZeroQuantityException
+            else:
+                raise TypeError(
+                    "В список товаров категории можно добавить только объект класса Product или его наследников"
+                )
+        except ZeroQuantityException as e:
+            print(e)
+        except TypeError as e:
+            print(e)
+        else:
             self._products.append(product)
             Category.product_count += 1
-        else:
-            raise TypeError(
-                "В список товаров категории можно добавить только объект класса Product или его наследников"
-            )
+            print("Товар успешно добавлен")
+        finally:
+            print("Обработка добавления товара завершена")
+
+    def middle_price(self) -> Any:
+        """Метод для подсчета средней цены товара в категории"""
+
+        try:
+            return round(sum([item.price for item in self._products]) / len(self._products), 2)
+        except ZeroDivisionError:
+            return 0.0
